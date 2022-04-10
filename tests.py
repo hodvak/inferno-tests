@@ -10,6 +10,8 @@ for test in tests:
     my_out,err1 = Popen(f"./{my_file} < {test}", shell=True,executable="/bin/bash",stdout=PIPE,stderr=PIPE).communicate()
     sol_out,err2 = Popen(f"./{sol_file} < {test}", shell=True,executable="/bin/bash",stdout=PIPE,stderr=PIPE).communicate()
     _,valgrind = Popen(f"valgrind ./{my_file} < {test}", shell=True,executable="/bin/bash",stdout=PIPE,stderr=PIPE).communicate()
+    valgrind = valgrind[valgrind.index(b"in use at exit: "):]
+    valgrind = valgrind[:valgrind.index(b"\n")]
     print("-"*10 +test+ "-"*10+'\n')
     if my_out != sol_out:
         print (f"error for file {test} yours:\n{my_out}\nsol:\n{sol_out}")
@@ -18,4 +20,5 @@ for test in tests:
         print (f"error for errors in file {test} yours:\n{err1}\nsol:\n{err2}")
         
     if not b"in use at exit: 0 bytes in 0 blocks" in valgrind:
-        print (f"did not free memory in {test}")
+        print (f"did not free memory in {test}:")
+        print (f"    {valgrind.decode()}")
