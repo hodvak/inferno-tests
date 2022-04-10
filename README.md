@@ -11,14 +11,14 @@ the tests will:
 1. download tests.py to your computer
 2. make directrory with the following files
    * solution file with the extantion "sol", must be the only file with "sol" in the name of the file
-   * your executable file must be wuth the name of the sol file without the "sol"
-   * tests files with "\_test" in the name
-   for example, the following files:
+   * your executable file must be the name of the sol file without the "sol"
+   * tests files with "\_test" in the name  
+   For example, the following files:
    * `ex1asol`
    * `ex1a`
    * `ex1a_test00.in`
    * `ex1a_test01.in`
-   * `ex1a_test02.in`
+   * `ex1a_test02.in`  
    (The directory may contain the file `ex1a.cc`)
 3. move the file `tests.py` to this directory
 
