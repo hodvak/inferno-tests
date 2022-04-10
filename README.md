@@ -8,7 +8,7 @@ the tests will:
 3. checks for leak memory using valgrind
 
 ## how to install ##
-1. download tests.py to your computer [https://raw.githubusercontent.com/hodvak/inferno_tests/main/tests.py](from here) (right click and 'save as', save with '.py' extantion)
+1. download tests.py to your computer ([from here](https://www.example.com/my%20great%20page) (right click and 'save as', save with '.py' extantion)
 2. open the linux and make directrory with the following files
    * School solution file with the extantion "sol", must be the only file with "sol" in the name of the file
    * your executable file must be the name of the sol file without the "sol"
