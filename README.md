@@ -21,7 +21,7 @@ the tests will:
    * `ex1a_test01.in`
    * `ex1a_test02.in`  
    
-   (The directory may contain the file `ex1a.cc`)
+   (The directory may also contain the file `ex1a.cc`)
 3. move the file `tests.py` to this directory
 
 ## how to use ##
