@@ -30,8 +30,8 @@ def main(timeout: int):
             my_out, my_err = run_command(f'./{my_file} < {test}', timeout=timeout)
         except TimeoutExpired:
             print(f'Your program cross the timeout limit({timeout} seconds) usually because infinite loop\n'
-                  f'you may run the tests without timeout or with bigger timeout using \'-t\' flag\n'
-                  f'for more information use \'-h\' flag')
+                  f'You can run the tests without timeout, or with bigger timeout, using the \'-t\' flag\n'
+                  f'For more information, use \'-h\' flag')
             continue
         sol_out, sol_err = run_command(f'./{sol_file} < {test}')
 
@@ -95,8 +95,8 @@ if __name__ == '__main__':
     parser.add_argument('--version', '-v', action='version', version=f'Inferno Tests {__version__}')
     parser.add_argument('--timeout',
                         '-t',
-                        help="set the timeout to your program or 0 for no timeout, default value is 0 (no timeout)",
+                        help="set the timeout to your program or 0 for no timeout, default value is 5",
                         type=int,
-                        default=0)
+                        default=5)
     args = parser.parse_args()
     main(args.timeout if args.timeout != 0 else None)

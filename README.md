@@ -39,4 +39,17 @@ and replace it with the old one
    ```console
    test_ex
    ```
-   For each test the program will print the name of the test and the errors for this test 
+   For each test the program will print the name of the test and the errors for this test.  
+   the tests automatically run with timeout of 5 seconds to your program.  
+   to run the program with X seconds timeout, run the following command
+   ```console
+   test_ex --timeout X
+   ```
+   to run with no timeout, set the timeout flag to 0:
+   ```console
+   test_ex --timeout 0
+   ```
+   for more information run:
+   ```console
+   test_ex --help
+   ```
