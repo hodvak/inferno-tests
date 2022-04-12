@@ -9,8 +9,8 @@ the tests will:
 
 ## how to install ##
 1. download tests.py to your computer [from here](https://raw.githubusercontent.com/hodvak/inferno_tests/main/tests.py) (right click and 'save as', save with '.py' extantion)
-2. open the linux and make directrory with the following files
-   * School solution file with the extantion "sol", must be the only file with "sol" in the name of the file
+2. open the linux and make directory with the following files
+   * School solution file with the extension "sol", must be the only file with "sol" in the name of the file
    * your executable file must be the name of the sol file without the "sol"
    * tests files with "\_test" in the name  
    
@@ -25,7 +25,7 @@ the tests will:
 3. move the file `tests.py` to this directory
 
 ## how to use ##
-1. open the terminal at the directory and wirte the following command:  
+1. open the terminal at the directory and write the following command:  
    ```bash
    python tests.py
    ```
