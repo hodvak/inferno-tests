@@ -1,5 +1,5 @@
 # inferno tests #
-This project is an automation for teats for the coureses  
+This project is an automation for teats for the courses  
 Intro2cs and Intro2cs2  
 
 the tests will:
