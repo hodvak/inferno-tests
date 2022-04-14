@@ -1,4 +1,5 @@
 # inferno tests #
+[![Github tag](https://badgen.net/github/release/hodvak/inferno_tests)](https://github.com/hodvak/inferno_tests/releases/latest)
 [![Github tag](https://badgen.net/github/tag/hodvak/inferno_tests)](https://github.com/hodvak/inferno_tests/tags/)
 
 This project is an automation for teats for the courses  
@@ -11,7 +12,7 @@ The tests will:
 
 ## How to Install ##
 1. Download the code [from here](https://github.com/hodvak/inferno_tests/archive/refs/heads/main.zip).  
-   Or by select the wanted version [from here](https://github.com/hodvak/inferno_tests/tags/) and download zip file
+   Or by select the wanted stable version [from here](https://github.com/hodvak/inferno_tests/releases/) and download the `inferno_tests.zip` zip file
 2. Move the zip file to your linux (virtual machine/inferno)
 3. Open the zip file and extract the `inferno_tests` directory to wherever you want 
    (strongly recommended not to save it on the desktop (for clear desktop)) 
