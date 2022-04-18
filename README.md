@@ -3,8 +3,8 @@
 [![Github tag](https://badgen.net/github/tag/hodvak/inferno_tests)](https://github.com/hodvak/inferno_tests/tags/)
 [![Github licence](https://img.shields.io/github/license/hodvak/inferno_tests)](https://github.com/hodvak/inferno_tests/blob/master/LICENSE)
 
-This project is an automation for teats for the courses  
-Intro2cs and Intro2cs2  
+This project is an automation for teats for the Hadassah Academic College courses  
+Intro2cs and Intro2cs2 
 
 The tests will:
 1. Checks the differences between your output and the school solution output
