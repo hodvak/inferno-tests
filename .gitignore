@@ -1,3 +1,7 @@
 .idea
 venv
 inferno_tests.zip
+dist
+build
+hac_intro2cs_tests.egg-info
+__pycache__

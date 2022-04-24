@@ -3,10 +3,10 @@ import os
 from subprocess import Popen, PIPE, TimeoutExpired
 from typing import Tuple, List
 
-__version__ = "1.2.0"
+__version__ = "1.2.1"
 
 
-def main(timeout: int):
+def test_ex(timeout: int):
     my_file, sol_file, tests = get_files()
 
     # make sure all the files exists
@@ -17,28 +17,32 @@ def main(timeout: int):
         print(f"Did not find any file with the name '{sol_file[:-3]}'")
         return
     if not tests:
-        print("There is no test file to run (files with '_test' in the name, for example 'ex1a_test00.in')")
+        print(
+            "There is no test file to run (files with '_test' in the name, for example 'ex1a_test00.in')"
+        )
         return
 
     # make files executable permissions for all users
-    run_command(f'chmod a+x {my_file}')
-    run_command(f'chmod a+x {sol_file}')
+    run_command(f"chmod a+x {my_file}")
+    run_command(f"chmod a+x {sol_file}")
 
     for test in tests:
-        print('=' * 10 + test + '=' * 10)
+        print("=" * 10 + test + "=" * 10)
         try:
-            my_out, my_err = run_command(f'./{my_file} < {test}', timeout=timeout)
+            my_out, my_err = run_command(f"./{my_file} < {test}", timeout=timeout)
         except TimeoutExpired:
-            print(f'Your program cross the timeout limit({timeout} seconds) usually because infinite loop\n'
-                  f'You can run the tests without timeout, or with bigger timeout, using the \'-t\' flag\n'
-                  f'For more information, use \'-h\' flag')
+            print(
+                f"Your program cross the timeout limit({timeout} seconds) usually because infinite loop\n"
+                f"You can run the tests without timeout, or with bigger timeout, using the '-t' flag\n"
+                f"For more information, use '-h' flag"
+            )
             continue
-        sol_out, sol_err = run_command(f'./{sol_file} < {test}')
+        sol_out, sol_err = run_command(f"./{sol_file} < {test}")
 
         # run the program with valgrind, save only the right line ('in use at exit: ... \n')
-        valgrind = run_command(f'valgrind ./{my_file} < {test}')[1]
-        valgrind = valgrind[valgrind.index(b'in use at exit: '):]
-        valgrind = valgrind[:valgrind.index(b'\n')]
+        valgrind = run_command(f"valgrind ./{my_file} < {test}")[1]
+        valgrind = valgrind[valgrind.index(b"in use at exit: ") :]
+        valgrind = valgrind[: valgrind.index(b"\n")]
 
         if my_out != sol_out:
             print(f'Outputs not match for "{test}"\nyours:\n{my_out}\nsol:\n{sol_out}')
@@ -47,7 +51,7 @@ def main(timeout: int):
             print(f'Errors not match for  "{test}"\nyours:\n{my_err}\nsol:\n{sol_err}')
 
         if b"in use at exit: 0 bytes in 0 blocks" not in valgrind:
-            print(f'Memory leak in {test}:')
+            print(f"Memory leak in {test}:")
             print(f'    "{valgrind.decode()}"')
 
 
@@ -60,17 +64,17 @@ def get_files() -> Tuple[str, str, List[str]]:
     """
     files = os.listdir()
 
-    tests = [f for f in files if '_test' in f]
+    tests = [f for f in files if "_test" in f]
     tests.sort()
 
-    sol_file = [f for f in files if f.endswith('sol')]
+    sol_file = [f for f in files if f.endswith("sol")]
     if len(sol_file) == 0:
-        return '', '', tests
+        return "", "", tests
     sol_file = sol_file[0]
 
     my_file = sol_file[:-3]
     if my_file not in files:
-        return '', sol_file, tests
+        return "", sol_file, tests
 
     return my_file, sol_file, tests
 
@@ -82,21 +86,26 @@ def run_command(command: str, timeout: int = None) -> Tuple[bytes, bytes]:
     :param timeout: timeout for the command None for no timeout
     :return: (output(cout), errors(cerr))
     """
-    return Popen(command,
-                 shell=True,
-                 executable='/bin/bash',
-                 stdout=PIPE,
-                 stderr=PIPE
-                 ).communicate(timeout=timeout)
+    return Popen(
+        command, shell=True, executable="/bin/bash", stdout=PIPE, stderr=PIPE
+    ).communicate(timeout=timeout)
 
 
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--version', '-v', action='version', version=f'Inferno Tests {__version__}')
-    parser.add_argument('--timeout',
-                        '-t',
-                        help="set the timeout to your program or 0 for no timeout, default value is 5",
-                        type=int,
-                        default=5)
+    parser.add_argument(
+        "--version", "-v", action="version", version=f"Inferno Tests {__version__}"
+    )
+    parser.add_argument(
+        "--timeout",
+        "-t",
+        help="set the timeout to your program or 0 for no timeout, default value is 5",
+        type=int,
+        default=5,
+    )
     args = parser.parse_args()
-    main(args.timeout if args.timeout != 0 else None)
+    test_ex(args.timeout if args.timeout != 0 else None)
+
+
+if __name__ == "__main__":
+    main()
