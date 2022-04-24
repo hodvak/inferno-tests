@@ -49,6 +49,7 @@ replace the `<file_name>` with the name of the file you downloaded
 2. Open the terminal at the directory and write the following command:  
    ```console
    python -m test_ex
+   ```
    For each test the program will print the name of the test and the problem in the test (is there output diff, is there errors (cerr) diff, is there a leak memory).  
    the tests automatically run with timeout of 5 seconds to your program.  
    to run the program with X seconds timeout, run the following command
