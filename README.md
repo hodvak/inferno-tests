@@ -48,10 +48,8 @@ replace the `<file_name>` with the name of the file you downloaded
    
 2. Open the terminal at the directory and write the following command:  
    ```console
-   test_ex
-   ```
+   python -m test_ex
    For each test the program will print the name of the test and the problem in the test (is there output diff, is there errors (cerr) diff, is there a leak memory).  
-   
    the tests automatically run with timeout of 5 seconds to your program.  
    to run the program with X seconds timeout, run the following command
    ```console
@@ -65,3 +63,21 @@ replace the `<file_name>` with the name of the file you downloaded
    ```console
    test_ex --help
    ```
+### Alias ###
+you can add [alisa](https://www.tecmint.com/create-alias-in-linux/) to the command by writing the next line to the file `~/.tcshrc`:
+```sh
+alias test_ex python -m test_ex
+``` 
+you may run the following command to do so:
+```sh
+$ echo "alias test_ex python -m test_ex" >> ~/.tcshrc
+```
+
+now you can run the command:
+```sh
+$ test_ex
+``` 
+instead of 
+```sh
+$ python -m test_ex
+``` 

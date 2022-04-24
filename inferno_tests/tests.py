@@ -1,9 +1,10 @@
+#!python
 import argparse
 import os
 from subprocess import Popen, PIPE, TimeoutExpired
 from typing import Tuple, List
 
-__version__ = "1.2.1"
+__version__ = "1.2.2-2"
 
 
 def test_ex(timeout: int):
