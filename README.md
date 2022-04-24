@@ -28,7 +28,7 @@ Now add the file to the NoMachine and run the following command:
 ```sh
 $ python -m pip install --user <file_name>
 ``` 
-replace the `<file_name>` with the name of the you downloaded
+replace the `<file_name>` with the name of the file you downloaded
 
 ## How to Use ##
 1. Open the linux (NoMachine or Virtual Machine) and make directory with the following files:
