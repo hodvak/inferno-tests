@@ -4,10 +4,14 @@ import os
 from subprocess import Popen, PIPE, TimeoutExpired
 from typing import Tuple, List
 
-__version__ = "1.2.3"
+__version__ = "1.2.4"
 
 
 def test_ex(timeout: int):
+    """
+    main function to run the tests
+    :param timeout: the timeout for each test
+    """
     my_file, sol_file, tests = get_files()
 
     # make sure all the files exists
@@ -33,9 +37,10 @@ def test_ex(timeout: int):
             my_out, my_err = run_command(f"./{my_file} < {test}", timeout=timeout)
         except TimeoutExpired:
             print(
-                f"Your program cross the timeout limit({timeout} seconds) usually because infinite loop\n"
-                f"You can run the tests without timeout, or with bigger timeout, using the '-t' flag\n"
-                f"For more information, use '-h' flag"
+                "--------TIMEOUT--------\n"
+                f"    Your program cross the timeout limit({timeout} seconds) usually because infinite loop\n"
+                f"    You can run the tests without timeout, or with bigger timeout, using the '-t' flag\n"
+                f"    For more information, use '-h' flag\n"
             )
             continue
         sol_out, sol_err = run_command(f"./{sol_file} < {test}")
@@ -46,14 +51,45 @@ def test_ex(timeout: int):
         valgrind = valgrind[: valgrind.index(b"\n")]
 
         if my_out != sol_out:
-            print(f'Outputs not match for "{test}"\nyours:\n{my_out}\nsol:\n{sol_out}')
+            my_out = ('"' + repr(my_out)[2:-1] + '"').replace(
+                "\\n", '\\n"\n            "'
+            )
+            sol_out = ('"' + repr(sol_out)[2:-1] + '"').replace(
+                "\\n", '\\n"\n            "'
+            )
+            print(
+                "---------OUTPUT--------\n"
+                f'    Outputs not match for "{test}"\n'
+                f"        yours:\n"
+                f"            {my_out}\n"
+                f"        \n"
+                f"        school solution:\n"
+                f"            {sol_out}\n"
+            )
 
         if my_err != sol_err:
-            print(f'Errors not match for  "{test}"\nyours:\n{my_err}\nsol:\n{sol_err}')
+            my_err = ('"' + repr(my_err)[2:-1] + '"').replace(
+                "\\n", '\\n"\n            "'
+            )
+            sol_err = ('"' + repr(sol_err)[2:-1] + '"').replace(
+                "\\n", '\\n"\n            "'
+            )
+            print(
+                "---------ERROR---------\n"
+                f'    Errors not match for "{test}"\n'
+                f"        yours:\n"
+                f"            {my_err}\n"
+                f"        \n"
+                f"        school solution:\n"
+                f"            {sol_err}\n"
+            )
 
         if b"in use at exit: 0 bytes in 0 blocks" not in valgrind:
-            print(f"Memory leak in {test}:")
-            print(f'    "{valgrind.decode()}"')
+            print(
+                "------MEMORY LEAK------\n"
+                f"    Memory leak in {test}:\n"
+                f'        "{valgrind.decode()}"\n'
+            )
 
 
 def get_files() -> Tuple[str, str, List[str]]:
