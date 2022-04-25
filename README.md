@@ -60,6 +60,7 @@ alias test_ex python -m test_ex
 ``` 
 You may run the following command to do so:
 ```sh
+touch ~/.tcshrc
 echo "alias test_ex python -m test_ex" >> ~/.tcshrc
 ```
 
