@@ -1,4 +1,4 @@
-# inferno tests #
+# Inferno Tests #
 [![Github licence](https://img.shields.io/github/license/hodvak/inferno_tests)](https://github.com/hodvak/inferno_tests/blob/master/LICENSE)
 
 [![Github release](https://badgen.net/github/release/hodvak/inferno_tests)](https://github.com/hodvak/inferno_tests/releases/latest)
