@@ -1,8 +1,8 @@
 # Inferno Tests #
-[![Github licence](https://img.shields.io/github/license/hodvak/inferno_tests)](https://github.com/hodvak/inferno_tests/blob/master/LICENSE)
+[![Github licence](https://img.shields.io/github/license/hodvak/inferno-tests)](https://github.com/hodvak/inferno-tests/blob/master/LICENSE)
 
-[![Github release](https://badgen.net/github/release/hodvak/inferno_tests)](https://github.com/hodvak/inferno_tests/releases/latest)
-[![Github tag](https://badgen.net/github/tag/hodvak/inferno_tests)](https://github.com/hodvak/inferno_tests/tags/)
+[![Github release](https://badgen.net/github/release/hodvak/inferno-tests)](https://github.com/hodvak/inferno-tests/releases/latest)
+[![Github tag](https://badgen.net/github/tag/hodvak/inferno-tests)](https://github.com/hodvak/inferno-tests/tags/)
 [![PyPI version](https://img.shields.io/pypi/v/hac-intro2cs-tests)](https://pypi.org/project/hac-intro2cs-tests/)
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
