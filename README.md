@@ -19,14 +19,14 @@ The tests will:
 ### Virtual Machine ###
 Because the virtual machine has internet connection you may only use the following terminal command:
 ```sh
-$ python -m pip install --user hac-intro2cs-tests
+python -m pip install --user hac-intro2cs-tests
 ``` 
 ### NoMachine ###
 The NoMachine has no internet connection so you must download the package 
 file from [PyPI page](https://pypi.org/project/hac-intro2cs-tests/#files) (the `.whl` file is recommended).  
 Now add the file to the NoMachine and run the following command:
 ```sh
-$ python -m pip install --user <file_name>
+python -m pip install --user <file_name>
 ``` 
 Replace the `<file_name>` with the name of the file you downloaded
 
@@ -48,7 +48,7 @@ Replace the `<file_name>` with the name of the file you downloaded
    
 2. Open the terminal at the directory and write the following command:  
    ```sh
-   $ python -m test_ex
+   python -m test_ex
    ```
    For each test the program will print the name of the test and the problem with the test 
    (if there is outputs diff, if there is errors (cerr) diff, if there is a memory leak).  
@@ -60,28 +60,28 @@ alias test_ex python -m test_ex
 ``` 
 You may run the following command to do so:
 ```sh
-$ echo "alias test_ex python -m test_ex" >> ~/.tcshrc
+echo "alias test_ex python -m test_ex" >> ~/.tcshrc
 ```
 
 Now you can run the command:
 ```sh
-$ test_ex
+test_ex
 ``` 
 Instead of: 
 ```sh
-$ python -m test_ex
+python -m test_ex
 ``` 
 
 ## A Little Bit More ##
 The tests automatically run with timeout of 5 seconds to *your* program.  
-To change the timeout you may use the `-t` or `--timeout` flag:
+To change the timeout you may use the `-t` or `--timeout` flag:  
 To run the program with X seconds timeout, run the following command
 ```sh
-$ python -m test_ex --timeout X
+test_ex --timeout X
 ```
 To run with no timeout (Strongly recommended not to), set the timeout flag to 0:
 ```sh
-$ python -m test_ex --timeout 0
+test_ex --timeout 0
 ```
 For more information run:
 ```sh
