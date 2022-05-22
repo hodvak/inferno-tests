@@ -21,21 +21,21 @@ def test_ex(timeout: int):
     # make files executable permissions for all users
     for my_file, sol_file, tests in zip(my_files, sol_files, tests_for_all):
 
-        if not my_files:
+        print("#" * 15 + sol_file[:-3] + "#" * 15)
+        if not my_file:
             print(f"Did not find any file with the name '{sol_file[:-3]}'")
             continue
 
         if not tests:
             print(
-                "There is no test file to run "
-                f"(files that start with '{my_file}_test' in the name, for example '{my_file}_test00.in')"
+                "There are no tests to run "
+                f"(files that starts with '{my_file}_test', for example '{my_file}_test00.in')"
             )
             continue
 
         run_command(f"chmod a+x {my_file}")
         run_command(f"chmod a+x {sol_file}")
 
-        print("=" * 15 + my_file + "=" * 15)
         for test in tests:
             print("=" * 10 + test + "=" * 10)
             try:
