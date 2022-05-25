@@ -79,6 +79,7 @@ python -m test_ex
 ``` 
 
 ## A Little Bit More ##
+### Timeout ##
 The tests automatically run with timeout of 5 seconds to *your* program.  
 To change the timeout you may use the `-t` or `--timeout` flag:  
 To run the program with X seconds timeout, run the following command
@@ -89,6 +90,18 @@ To run with no timeout (Strongly recommended not to), set the timeout flag to 0:
 ```sh
 test_ex --timeout 0
 ```
+### Specific Test ###
+If you want to test specific test you may use the `-s` or `--specific` in the following way
+
+test all tests for ex1a:
+```sh
+test_ex --specific ex1a
+``` 
+test specific tests for ex1a (`ex1a_test01.in`):
+```sh
+test_ex --specific ex1a_test01.in
+``` 
+### More ###
 For more information run:
 ```sh
 test_ex --help
