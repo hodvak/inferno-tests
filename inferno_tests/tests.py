@@ -7,15 +7,19 @@ from typing import Tuple, List
 __version__ = "1.3.0"
 
 
-def test_ex(timeout: int):
+def test_ex(timeout: int, specific_test: str):
     """
     main function to run the tests
     :param timeout: the timeout for each test
+    :param specific_test: specific test or file to test, may be 'ex1a' or 'ex1a_test00.in'
     """
-    my_files, sol_files, tests_for_all = get_files()
+    my_files, sol_files, tests_for_all = get_files(specific_test)
     # make sure all the files exists
     if not sol_files:
-        print("Did not find any file with the 'sol' extension (for example 'ex1asol')")
+        if not specific_test:
+            print("Did not find any file with the 'sol' extension (for example 'ex1asol')")
+        else:
+            print(f"No file named '{specific_test}' as test file or ex")
         return
 
     # make files executable permissions for all users
@@ -52,7 +56,7 @@ def test_ex(timeout: int):
 
             # run the program with valgrind, save only the right line ('in use at exit: ... \n')
             valgrind = run_command(f"valgrind ./{my_file} < {test}")[1]
-            valgrind = valgrind[valgrind.index(b"in use at exit: ") :]
+            valgrind = valgrind[valgrind.index(b"in use at exit: "):]
             valgrind = valgrind[: valgrind.index(b"\n")]
 
             if my_out != sol_out:
@@ -97,7 +101,7 @@ def test_ex(timeout: int):
                 )
 
 
-def get_files() -> Tuple[List[str], List[str], List[List[str]]]:
+def get_files(specific_test: str) -> Tuple[List[str], List[str], List[List[str]]]:
     """
     get the names of the files for tests
     :return: (the school solution,
@@ -108,11 +112,19 @@ def get_files() -> Tuple[List[str], List[str], List[List[str]]]:
 
     tests = [f for f in files if "_test" in f]
     tests.sort()
-
     sol_files = [f for f in files if f.endswith("sol")]
     my_files = [
         sol_file[:-3] if sol_file[:-3] in files else "" for sol_file in sol_files
     ]
+    if specific_test:
+        if specific_test in my_files:
+            my_files = [specific_test]
+        elif specific_test in tests:
+            my_files = [file for file in my_files if specific_test.startswith(specific_test)]
+            tests = [specific_test]
+        else:
+            return [], [], []
+
     if len(sol_files) == 1:
         return my_files, sol_files, [tests]
     return (
@@ -149,8 +161,15 @@ def main():
         type=int,
         default=5,
     )
+    parser.add_argument(
+        "--specific",
+        "-s",
+        help="test only specific test or ex",
+        type=str,
+        default="",
+    )
     args = parser.parse_args()
-    test_ex(args.timeout if args.timeout != 0 else None)
+    test_ex(args.timeout if args.timeout else None, args.specific if args.specific else None)
 
 
 if __name__ == "__main__":
