@@ -32,19 +32,25 @@ Replace the `<file_name>` with the name of the file you downloaded
 
 ## How to Use ##
 1. Open the linux (NoMachine or Virtual Machine) and make directory with the following files:
-   * School solution file, must be with the extension "sol",  
-     must be the only file with "sol" in the name of the file.
-   * Your executable file, must be the same name as the school solution file without the "sol".
+   * School solution files, must be with the extension "sol",  
+   * Your executable file, must be the same name as the school solution files names without the "sol".
    * Tests files, must contain "\_test" in their name.
+     if there are more then 1 sol file, the file must start with the executable file name following by "\_test"
    
    For example, directory with the following files:
    * `ex1asol`
    * `ex1a`
+   * `ex1a.cc` (optional)
    * `ex1a_test00.in`
    * `ex1a_test01.in`
-   * `ex1a_test02.in`  
+   * `ex1a_test02.in` 
+   * `ex1asol`
+   * `ex1b`
+   * `ex1b.cc` (optional)
+   * `ex1b_test00.in`
+   * `ex1b_test01.in`
+   * `ex1b_test02.in` 
    
-   (The directory may also contain the file `ex1a.cc` for easy use)
    
 2. Open the terminal at the directory and write the following command:  
    ```sh
@@ -74,6 +80,7 @@ python -m test_ex
 ``` 
 
 ## A Little Bit More ##
+### Timeout ##
 The tests automatically run with timeout of 5 seconds to *your* program.  
 To change the timeout you may use the `-t` or `--timeout` flag:  
 To run the program with X seconds timeout, run the following command
@@ -84,6 +91,18 @@ To run with no timeout (Strongly recommended not to), set the timeout flag to 0:
 ```sh
 test_ex --timeout 0
 ```
+### Specific Test ###
+If you want to test specific test you may use the `-s` or `--specific` in the following way
+
+test all tests for ex1a:
+```sh
+test_ex --specific ex1a
+``` 
+test specific tests for ex1a (`ex1a_test01.in`):
+```sh
+test_ex --specific ex1a_test01.in
+``` 
+### More ###
 For more information run:
 ```sh
 test_ex --help
