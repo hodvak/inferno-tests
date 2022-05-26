@@ -4,7 +4,7 @@ import os
 from subprocess import Popen, PIPE, TimeoutExpired
 from typing import Tuple, List
 
-__version__ = "1.3.0"
+__version__ = "1.3.1"
 
 
 def test_ex(timeout: int, specific_test: str):
